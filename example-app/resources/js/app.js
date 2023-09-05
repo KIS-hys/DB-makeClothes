@@ -10,14 +10,15 @@ document.addEventListener("DOMContentLoaded", function() {
     const overlayBack = document.getElementById("overlayBack");
     const dropdown = document.getElementById("dropdown");
 
+
     photo.src = frontImageSrc;
-    overlayFront.style.display = "block";
+    overlayFront.style.display = "flex";
     overlayBack.style.display = "none";
 
     frontButton.addEventListener("change", function() {
         if (this.checked) {
             photo.src = frontImageSrc;
-            overlayFront.style.display = "block";
+            overlayFront.style.display = "flex";
             overlayBack.style.display = "none";
         }
     });
@@ -26,11 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (this.checked) {
             photo.src = backImageSrc;
             overlayFront.style.display = "none";
-            overlayBack.style.display = "block";
-
-            overlayBack.style.top = "53%";
-            overlayBack.style.left = "29.8%";
-
+            overlayBack.style.display = "flex";
         }
     });
 

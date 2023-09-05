@@ -22,9 +22,13 @@
     <div class="row row-cols-2">
         <div class="col col-lg-6 col-sm-5 col-4 mx-auto">
             <div class="container position-relative">
-                <img id="photo" src="{{ asset('storage/front.png') }}" alt="ftontPhoto" class="mt-3" style="height: 600px;">
-                <div class="overlay" id="overlayFront"></div>
-                <div class="overlay" id="overlayBack"></div>
+                <img id="photo" src="{{ asset('storage/front.png') }}" alt="ftontPhoto" class="m-auto" style="width: 100%;">
+                <div class="overlay brand" id="overlayFront">
+                    <div class="brand-wrapper">
+                        <img class="brand-img" src="{{asset('storage/icon-3.jpeg')}}" />
+                    </div>
+                </div>
+                <div class="overlay brand" id="overlayBack"></div>
             </div>
         </div>
 
