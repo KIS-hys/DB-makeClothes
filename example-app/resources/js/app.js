@@ -41,16 +41,20 @@ document.addEventListener("DOMContentLoaded", function() {
         if (target.classList.contains("dropdown-item")) {
             const imageSrc = target.getAttribute("data-image-src");
 
+
             // frontButtonが選択されている場合
             if (document.getElementById("frontButton").checked) {
                 overlayFront.style.backgroundImage = `url(${imageSrc})`;
-                overlayFront.style.backgroundSize = "cover";
+                overlayFront.style.backgroundSize = "contain";
+                overlayFront.style.backgroundRepeat = "no-repeat";
+                overlayFront.style.backgroundPosition = "center center";
             }
 
             // backButtonが選択されている場合
             if (document.getElementById("backButton").checked) {
                 overlayBack.style.backgroundImage = `url(${imageSrc})`;
                 overlayBack.style.backgroundSize = "cover";
+                overlayBack.style.backgroundPosition = "center center";
             }
         }
     });
