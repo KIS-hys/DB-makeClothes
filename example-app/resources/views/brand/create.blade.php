@@ -1,6 +1,16 @@
 @extends('brand.layout.template')
 
 @section('main')
+
+
+@if (session('status'))
+<div class="flash_message">
+    {{ session('status') }}
+</div>
+@endif
+
+
+
 <div class="btn-group-vertical pt-5" role="group" aria-label="Vertical radio toggle button group">
     <input type="radio" class="btn-check" name="vbtn-radio" id="frontButton" autocomplete="off" checked>
     <label class="btn btn-outline-danger" for="frontButton">Front</label>
@@ -11,57 +21,121 @@
 <div class="container">
     <div class="row row-cols-2">
         <div class="col">
-            <img id="photo" src="{{ asset('storage/front.png') }}" alt="Photo" class="mt-3" style="height: 600px;">
+            <div class="container">
+                <img id="photo" src="{{ asset('storage/front.png') }}" alt="ftontPhoto" class="mt-3" style="height: 600px;">
+                <div class="overlay" id="overlayFront"></div>
+                <div class="overlay" id="overlayBack"></div>
+            </div>
         </div>
 
-        <div class="border">
-            <h1>アイテム</h1>
-            <div class="container">
-                <div class="row row-cols-3">
-                    <div class="text-center">
-                        <img src="{{ asset('storage/icon-1.jpeg') }}" class="rounded-circle img-thumbnail" style="height: 4cm">
-                        <p>a</p>
+        <div class="col">
+            <div class="border">
+                <div class="overflow-scroll">
+                    <h1>アイテム</h1>
+                    <div class="container">
+                        <div class="row row-cols-3" style="max-height: 400px; overflow-y: auto;">
+                            <div class="text-center">
+                                <img src="{{ asset('storage/icon-1.jpeg') }}" class="rounded-circle img-thumbnail" style="height: 4cm">
+                                <p>a</p>
+                            </div>
+                            <div class="text-center">
+                                <img src="{{ asset('storage/icon-2.jpeg') }}" class="rounded-circle img-thumbnail" style="height: 4cm">
+                                <p>b</p>
+                            </div>
+                            <div class="text-center">
+                                <img src="{{ asset('storage/icon-3.jpeg') }}" class="rounded-circle img-thumbnail" style="height: 4cm">
+                                <p>c</p>
+                            </div>
+                            <div class="text-center">
+                                <img src="{{ asset('storage/icon-1.jpeg') }}" class="rounded-circle img-thumbnail" style="height: 4cm">
+                                <p>d</p>
+                            </div>
+                            <div class="text-center">
+                                <img src="{{ asset('storage/icon-2.jpeg') }}" class="rounded-circle img-thumbnail" style="height: 4cm">
+                                <p>e</p>
+                            </div>
+                            <div class="text-center">
+                                <img src="{{ asset('storage/icon-3.jpeg') }}" class="rounded-circle img-thumbnail" style="height: 4cm">
+                                <p>f</p>
+                            </div>
+                            <div class="text-center">
+                                <img src="{{ asset('storage/icon-1.jpeg') }}" class="rounded-circle img-thumbnail" style="height: 4cm">
+                                <p>a</p>
+                            </div>
+                            <div class="text-center">
+                                <img src="{{ asset('storage/icon-2.jpeg') }}" class="rounded-circle img-thumbnail" style="height: 4cm">
+                                <p>b</p>
+                            </div>
+                            <div class="text-center">
+                                <img src="{{ asset('storage/icon-3.jpeg') }}" class="rounded-circle img-thumbnail" style="height: 4cm">
+                                <p>c</p>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="dropdown center" id="dropdown">
+                                <a class="btn btn-secondary btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    View
+                                </a>
+                            <ul class="dropdown-menu" id="dropdown">
+                                <li><a class="dropdown-item" href="#" data-image-src="{{ asset('storage/icon-1.jpeg') }}">a</a></li>
+                                <li><a class="dropdown-item" href="#" data-image-src="{{ asset('storage/icon-2.jpeg') }}">b</a></li>
+                                <li><a class="dropdown-item" href="#" data-image-src="{{ asset('storage/icon-3.jpeg') }}">c</a></li>
+                                <li><a class="dropdown-item" href="#" data-image-src="{{ asset('storage/icon-1.jpeg') }}">d</a></li>
+                                <li><a class="dropdown-item" href="#" data-image-src="{{ asset('storage/icon-2.jpeg') }}">e</a></li>
+                                <li><a class="dropdown-item" href="#" data-image-src="{{ asset('storage/icon-3.jpeg') }}">f</a></li>
+                                <li><a class="dropdown-item" href="#" data-image-src="{{ asset('storage/icon-1.jpeg') }}">a</a></li>
+                                <li><a class="dropdown-item" href="#" data-image-src="{{ asset('storage/icon-2.jpeg') }}">b</a></li>
+                                <li><a class="dropdown-item" href="#" data-image-src="{{ asset('storage/icon-3.jpeg') }}">c</a></li>
+                            </ul>
+                        </div>
+
+                        <form action="{{ route('brand.store') }}" method="post">
+                            <h2>デザイン選択</h2>
+                            @csrf
+                            <div class="row row-cols-4 m-auto">
+                                <div class="col">
+                                    <select class="form-select m-auto" name="front" aria-label="デザインを選択" style="width: 100%;">
+                                        <option value="{{ asset('storage/icon-1.jpeg') }}">デザイン A</option>
+                                        <option value="{{ asset('storage/icon-2.jpeg') }}">デザイン B</option>
+                                        <option value="{{ asset('storage/icon-3.jpeg') }}">デザイン C</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <select class="form-select m-auto" name="back" aria-label="デザインを選択" style="width: 100%;">
+                                        <option value="{{ asset('storage/icon-1.jpeg') }}">デザイン A</option>
+                                        <option value="{{ asset('storage/icon-2.jpeg') }}">デザイン B</option>
+                                        <option value="{{ asset('storage/icon-3.jpeg') }}">デザイン C</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <select class="form-select m-auto" name="size" aria-label="サイズを選択" style="width: 100%;">
+                                        <option value="S">S</option>
+                                        <option value="M">M</option>
+                                        <option value="L">L</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <select class="form-select m-auto" name="color" aria-label="色を選択" style="width: 100%;">
+                                        <option value="white">white</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="center">
+                                <button type="submit" class="btn btn-danger m-auto">作る</button>
+                            </div>
+                        </form>
+
+
+
                     </div>
-                    <div class="text-center">
-                        <img src="{{ asset('storage/icon-2.jpeg') }}" class="rounded-circle img-thumbnail" style="height: 4cm">
-                        <p>b</p>
-                    </div>
-                    <div class="text-center">
-                        <img src="{{ asset('storage/icon-1.jpeg') }}" class="rounded-circle img-thumbnail" style="height: 4cm">
-                        <p>c</p>
-                    </div>
-                    <div class="text-center">
-                        <img src="{{ asset('storage/icon-2.jpeg') }}" class="rounded-circle img-thumbnail" style="height: 4cm">
-                        <p>d</p>
-                    </div>
-                    <div class="text-center">
-                        <img src="{{ asset('storage/icon-1.jpeg') }}" class="rounded-circle img-thumbnail" style="height: 4cm">
-                        <p>e</p>
-                    </div>
-                    <div class="text-center">
-                        <img src="{{ asset('storage/icon-2.jpeg') }}" class="rounded-circle img-thumbnail" style="height: 4cm">
-                        <p>f</p>
-                    </div>
-                </div>
-                <hr>
-                <div class="dropdown center">
-                        <a class="btn btn-secondary btn-lg dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            選択
-                        </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#" data-image-src="{{ asset('storage/icon-1.jpeg') }}">a</a></li>
-                        <li><a class="dropdown-item" href="#" data-image-src="{{ asset('storage/icon-2.jpeg') }}">b</a></li>
-                        <li><a class="dropdown-item" href="#" data-image-src="{{ asset('storage/icon-1.jpeg') }}">c</a></li>
-                        <li><a class="dropdown-item" href="#" data-image-src="{{ asset('storage/icon-2.jpeg') }}">d</a></li>
-                        <li><a class="dropdown-item" href="#" data-image-src="{{ asset('storage/icon-1.jpeg') }}">e</a></li>
-                        <li><a class="dropdown-item" href="#" data-image-src="{{ asset('storage/icon-2.jpeg') }}">f</a></li>
-                    </ul>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
-
 <script>
     const frontImageSrc = "{{ asset('storage/front.png') }}";
     const backImageSrc = "{{ asset('storage/back.png') }}";

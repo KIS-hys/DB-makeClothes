@@ -5,3 +5,14 @@ div.center {
 .image-container {
     position: relative;
 }
+
+.overlay {
+    position: absolute;
+    top: 53%; /* 画像の中央に配置するために上部位置を調整 */
+    left: 29.2%; /* 画像の中央に配置するために左側位置を調整 */
+    transform: translate(-50%, -50%); /* 中央揃え */
+    background-color: rgb(255, 255, 255); /* 透明なブロックの背景色と透明度を設定 */
+    width: 220px; /* ブロックの幅を設定 */
+    height: 240px; /* ブロックの高さを設定 */
+    /* その他のスタイルを追加できます */
+}

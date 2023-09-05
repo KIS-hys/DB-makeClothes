@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('creations', function (Blueprint $table) {
             $table->id();
+            //$table->foreignId('user_id');
+            $table->string('front');
+            $table->string('back');
             $table->string('size');
             $table->string('color');
             $table->timestamps();
